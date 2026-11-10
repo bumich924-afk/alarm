@@ -18,9 +18,9 @@ jobs:
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
           for z in *.zip; do unzip -o "$z"; done
-          cd AlarmReminders
+          cd "$(dirname "$(find . -name settings.gradle.kts | head -n 1)")"
           gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: AlarmReminders/app/build/outputs/apk/debug/app-debug.apk
+          path: "**/app-debug.apk"
