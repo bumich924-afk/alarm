@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
-          if [ -f AlarmReminders-Android.zip ]; then unzip -o AlarmReminders-Android.zip; fi
+          for z in *.zip; do unzip -o "$z"; done
           cd AlarmReminders
           gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
